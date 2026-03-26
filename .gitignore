@@ -1,0 +1,23 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Loki Mode runtime
+.loki/
+
+# Logs
+*.log
+
+# Environment
+.env
+.env.*
+
+# Reports (generated, not committed)
+OSS_READY_REPORT.md

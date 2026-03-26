@@ -1,0 +1,114 @@
+{
+  "skill": "oss-ready",
+  "description": "Activation tests for the oss-ready skill — verifies correct triggering on open-source readiness queries and non-triggering on unrelated requests.",
+  "evals": [
+    {
+      "id": "trigger-oss-ready-keyword",
+      "input": "oss-ready",
+      "expected": "activate",
+      "reason": "Exact skill name should trigger"
+    },
+    {
+      "id": "trigger-open-source-ready",
+      "input": "Is this repo open source ready?",
+      "expected": "activate",
+      "reason": "Natural language variant of skill name"
+    },
+    {
+      "id": "trigger-audit-for-public",
+      "input": "Can you audit this repo before I push it to public GitHub?",
+      "expected": "activate",
+      "reason": "Audit + public context should trigger"
+    },
+    {
+      "id": "trigger-pii-scan",
+      "input": "Run a PII scan on this codebase",
+      "expected": "activate",
+      "reason": "PII scan is a listed trigger phrase"
+    },
+    {
+      "id": "trigger-secrets-scan",
+      "input": "Check this repo for leaked secrets",
+      "expected": "activate",
+      "reason": "Secrets scan is a core function"
+    },
+    {
+      "id": "trigger-pre-publish",
+      "input": "Pre-publish check before I open source this project",
+      "expected": "activate",
+      "reason": "Pre-publish check is a listed trigger"
+    },
+    {
+      "id": "trigger-safe-to-open-source",
+      "input": "Is this safe to open source?",
+      "expected": "activate",
+      "reason": "Direct question about open source safety"
+    },
+    {
+      "id": "trigger-ready-for-github",
+      "input": "Is this ready for GitHub public?",
+      "expected": "activate",
+      "reason": "Ready for GitHub public is a listed trigger"
+    },
+    {
+      "id": "trigger-open-source-readiness",
+      "input": "Check the open source readiness of this project",
+      "expected": "activate",
+      "reason": "Explicit readiness check"
+    },
+    {
+      "id": "trigger-check-before-publishing",
+      "input": "I want to make this repo public, can you check it first?",
+      "expected": "activate",
+      "reason": "Making repo public implies open-source readiness audit"
+    },
+    {
+      "id": "no-trigger-generic-audit",
+      "input": "Audit the code quality of this project",
+      "expected": "do_not_activate",
+      "reason": "Generic audit without open-source context should not trigger"
+    },
+    {
+      "id": "no-trigger-deploy",
+      "input": "Deploy this to production",
+      "expected": "do_not_activate",
+      "reason": "Deployment is unrelated to open-source readiness"
+    },
+    {
+      "id": "no-trigger-ci-cd",
+      "input": "Set up CI/CD for this repo",
+      "expected": "do_not_activate",
+      "reason": "CI/CD setup is explicitly a non-trigger"
+    },
+    {
+      "id": "no-trigger-fix-bug",
+      "input": "Fix this bug in the authentication module",
+      "expected": "do_not_activate",
+      "reason": "Bug fixing is unrelated"
+    },
+    {
+      "id": "no-trigger-add-tests",
+      "input": "Add unit tests for the user service",
+      "expected": "do_not_activate",
+      "reason": "Adding tests is a development task, not an audit"
+    },
+    {
+      "id": "no-trigger-vulnerability-scan",
+      "input": "Run a security vulnerability scan on our dependencies",
+      "expected": "do_not_activate",
+      "reason": "Dependency vulnerability scanning is explicitly out of scope (use npm audit)"
+    },
+    {
+      "id": "no-trigger-code-review",
+      "input": "Review this pull request",
+      "expected": "do_not_activate",
+      "reason": "Code review is a different task"
+    },
+    {
+      "id": "no-trigger-refactor",
+      "input": "Refactor the database module to use connection pooling",
+      "expected": "do_not_activate",
+      "reason": "Refactoring is unrelated to open-source readiness"
+    }
+  ]
+}
