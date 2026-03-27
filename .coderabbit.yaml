@@ -1,0 +1,30 @@
+language: en
+reviews:
+  profile: assertive
+  high_level_summary: true
+  auto_review:
+    enabled: true
+    drafts: false
+  path_instructions:
+    - path: "SKILL.md"
+      instructions: |
+        This is a Claude Code skill definition. Review for:
+        - Clear, unambiguous instructions for AI
+        - Consistent scoring rubrics and weights
+        - Proper trigger condition coverage
+        - Visual output templates using emoji and Unicode (no ANSI colors)
+        - Self-exclusion rules to avoid false positives on own patterns
+    - path: "evals/evals.json"
+      instructions: |
+        These are activation evals for a Claude Code skill. Review for:
+        - Coverage of all 5 modes (FULL, HEALTH, COACH, README, RELEASE)
+        - Both positive triggers (should activate) and negative triggers (should not)
+        - No duplicate or overly similar test cases
+    - path: "README.md"
+      instructions: |
+        Public-facing documentation. Review for:
+        - Accurate feature descriptions matching SKILL.md
+        - Working install instructions
+        - Clear usage examples
+chat:
+  auto_reply: true
