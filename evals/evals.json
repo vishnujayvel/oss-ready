@@ -1,66 +1,202 @@
 {
   "skill": "oss-ready",
-  "description": "Activation tests for the oss-ready skill — verifies correct triggering on open-source readiness queries and non-triggering on unrelated requests.",
+  "description": "Activation tests for the oss-ready skill — verifies correct triggering on open-source readiness queries across all 5 features, and non-triggering on unrelated requests.",
   "evals": [
     {
-      "id": "trigger-oss-ready-keyword",
+      "id": "trigger-full-oss-ready-keyword",
       "input": "oss-ready",
       "expected": "activate",
-      "reason": "Exact skill name should trigger"
+      "mode": "FULL",
+      "reason": "Exact skill name should trigger full audit"
     },
     {
-      "id": "trigger-open-source-ready",
+      "id": "trigger-full-open-source-ready",
       "input": "Is this repo open source ready?",
       "expected": "activate",
+      "mode": "FULL",
       "reason": "Natural language variant of skill name"
     },
     {
-      "id": "trigger-audit-for-public",
+      "id": "trigger-full-audit-for-public",
       "input": "Can you audit this repo before I push it to public GitHub?",
       "expected": "activate",
-      "reason": "Audit + public context should trigger"
+      "mode": "FULL",
+      "reason": "Audit + public context should trigger full mode"
     },
     {
-      "id": "trigger-pii-scan",
-      "input": "Run a PII scan on this codebase",
-      "expected": "activate",
-      "reason": "PII scan is a listed trigger phrase"
-    },
-    {
-      "id": "trigger-secrets-scan",
-      "input": "Check this repo for leaked secrets",
-      "expected": "activate",
-      "reason": "Secrets scan is a core function"
-    },
-    {
-      "id": "trigger-pre-publish",
+      "id": "trigger-full-pre-publish",
       "input": "Pre-publish check before I open source this project",
       "expected": "activate",
-      "reason": "Pre-publish check is a listed trigger"
+      "mode": "FULL",
+      "reason": "Pre-publish check is a listed full audit trigger"
     },
     {
-      "id": "trigger-safe-to-open-source",
+      "id": "trigger-full-safe-to-open-source",
       "input": "Is this safe to open source?",
       "expected": "activate",
+      "mode": "FULL",
       "reason": "Direct question about open source safety"
     },
     {
-      "id": "trigger-ready-for-github",
+      "id": "trigger-full-ready-for-github",
       "input": "Is this ready for GitHub public?",
       "expected": "activate",
-      "reason": "Ready for GitHub public is a listed trigger"
+      "mode": "FULL",
+      "reason": "Ready for GitHub public is a listed full trigger"
     },
     {
-      "id": "trigger-open-source-readiness",
+      "id": "trigger-full-readiness",
       "input": "Check the open source readiness of this project",
       "expected": "activate",
+      "mode": "FULL",
       "reason": "Explicit readiness check"
     },
     {
-      "id": "trigger-check-before-publishing",
+      "id": "trigger-full-make-public",
       "input": "I want to make this repo public, can you check it first?",
       "expected": "activate",
-      "reason": "Making repo public implies open-source readiness audit"
+      "mode": "FULL",
+      "reason": "Making repo public implies full audit"
+    },
+    {
+      "id": "trigger-full-audit",
+      "input": "full audit",
+      "expected": "activate",
+      "mode": "FULL",
+      "reason": "Explicit full audit trigger"
+    },
+    {
+      "id": "trigger-security-pii-scan",
+      "input": "Run a PII scan on this codebase",
+      "expected": "activate",
+      "mode": "SECURITY",
+      "reason": "PII scan triggers security mode"
+    },
+    {
+      "id": "trigger-security-secrets-scan",
+      "input": "Check this repo for leaked secrets",
+      "expected": "activate",
+      "mode": "SECURITY",
+      "reason": "Secrets scan triggers security mode"
+    },
+    {
+      "id": "trigger-security-credential-scan",
+      "input": "credential scan on this project",
+      "expected": "activate",
+      "mode": "SECURITY",
+      "reason": "Credential scan is a security mode trigger"
+    },
+    {
+      "id": "trigger-health-repo-health",
+      "input": "Check the repo health of this project",
+      "expected": "activate",
+      "mode": "HEALTH",
+      "reason": "Repo health is a direct trigger for scorecard mode"
+    },
+    {
+      "id": "trigger-health-scorecard",
+      "input": "Give me a scorecard for this repository",
+      "expected": "activate",
+      "mode": "HEALTH",
+      "reason": "Scorecard triggers health mode"
+    },
+    {
+      "id": "trigger-health-community",
+      "input": "How's the community health of this repo?",
+      "expected": "activate",
+      "mode": "HEALTH",
+      "reason": "Community health is a listed health trigger"
+    },
+    {
+      "id": "trigger-health-check",
+      "input": "health check",
+      "expected": "activate",
+      "mode": "HEALTH",
+      "reason": "Direct health check trigger"
+    },
+    {
+      "id": "trigger-coach-should-i",
+      "input": "Should I open source this project?",
+      "expected": "activate",
+      "mode": "COACH",
+      "reason": "Should I open source is an explicit coach trigger"
+    },
+    {
+      "id": "trigger-coach-oss-coach",
+      "input": "oss coach",
+      "expected": "activate",
+      "mode": "COACH",
+      "reason": "Direct oss coach keyword"
+    },
+    {
+      "id": "trigger-coach-worth-it",
+      "input": "Is this worth open sourcing?",
+      "expected": "activate",
+      "mode": "COACH",
+      "reason": "Worth open sourcing triggers coach mode"
+    },
+    {
+      "id": "trigger-coach-make-public",
+      "input": "Should I make this project public?",
+      "expected": "activate",
+      "mode": "COACH",
+      "reason": "Making public triggers coach for guidance"
+    },
+    {
+      "id": "trigger-readme-audit",
+      "input": "Audit my README",
+      "expected": "activate",
+      "mode": "README",
+      "reason": "README audit is a direct trigger"
+    },
+    {
+      "id": "trigger-readme-check",
+      "input": "Check my README",
+      "expected": "activate",
+      "mode": "README",
+      "reason": "Check my readme is a listed trigger"
+    },
+    {
+      "id": "trigger-readme-score",
+      "input": "What's my README score?",
+      "expected": "activate",
+      "mode": "README",
+      "reason": "README score triggers readme auditor"
+    },
+    {
+      "id": "trigger-readme-review",
+      "input": "Review my README for quality",
+      "expected": "activate",
+      "mode": "README",
+      "reason": "README review triggers readme auditor"
+    },
+    {
+      "id": "trigger-release-check",
+      "input": "Is this ready to ship?",
+      "expected": "activate",
+      "mode": "RELEASE",
+      "reason": "Ready to ship is a listed release trigger"
+    },
+    {
+      "id": "trigger-release-pre-release",
+      "input": "Run a pre-release check",
+      "expected": "activate",
+      "mode": "RELEASE",
+      "reason": "Pre-release is a listed release trigger"
+    },
+    {
+      "id": "trigger-release-ship-check",
+      "input": "ship check",
+      "expected": "activate",
+      "mode": "RELEASE",
+      "reason": "Ship check is a direct release trigger"
+    },
+    {
+      "id": "trigger-release-ready",
+      "input": "release ready",
+      "expected": "activate",
+      "mode": "RELEASE",
+      "reason": "Direct release ready trigger"
     },
     {
       "id": "no-trigger-generic-audit",
@@ -109,6 +245,18 @@
       "input": "Refactor the database module to use connection pooling",
       "expected": "do_not_activate",
       "reason": "Refactoring is unrelated to open-source readiness"
+    },
+    {
+      "id": "no-trigger-write-readme",
+      "input": "Write a README for this project",
+      "expected": "do_not_activate",
+      "reason": "Writing a README is a creation task, not an audit — readme auditor only scores existing READMEs"
+    },
+    {
+      "id": "no-trigger-create-changelog",
+      "input": "Create a CHANGELOG for this project",
+      "expected": "do_not_activate",
+      "reason": "Creating files is a different task from auditing readiness"
     }
   ]
 }

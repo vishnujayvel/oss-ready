@@ -21,3 +21,9 @@ Thumbs.db
 
 # Reports (generated, not committed)
 OSS_READY_REPORT.md
+
+# Internal development artifacts
+.claude/specs/
+.claude/skills/
+.claude/commands/
+openspec/changes/
